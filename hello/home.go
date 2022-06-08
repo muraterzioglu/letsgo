@@ -17,6 +17,9 @@ func main() {
 	// Multiple parameters and error handling
 	nameWithErrors("", "18")
 
+	// Usage of random and time
+	nameWithRandomGreeting("Ekrem")
+
 }
 
 func name(name string) {
@@ -27,7 +30,17 @@ func name(name string) {
 func nameWithErrors(name string, age string) {
 	msgAge, msgAgeError := greeter.WithAge(name, age)
 	if msgAgeError != nil {
-		log.Fatal(msgAgeError)
+		// Disabled because it's just an example
+		// log.Fatal(msgAgeError)
+		log.Print(msgAgeError)
 	}
 	fmt.Println(msgAge)
+}
+
+func nameWithRandomGreeting(name string) {
+	msgName, msgNameError := greeter.WithRandom(name)
+	if msgNameError != nil {
+		log.Fatal(msgNameError)
+	}
+	fmt.Println(msgName)
 }
