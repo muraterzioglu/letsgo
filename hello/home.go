@@ -20,10 +20,16 @@ func main() {
 	// Usage of random and time
 	nameWithRandomGreeting("Ekrem")
 
+	// Usage of math and for loop
+	greetingPerName(true)
+
 }
 
 func name(name string) {
-	msg := greeter.JustName(name)
+	msg, err := greeter.JustName(name)
+	if err != nil {
+		log.Print(err)
+	}
 	fmt.Println(msg)
 }
 
@@ -43,4 +49,26 @@ func nameWithRandomGreeting(name string) {
 		log.Fatal(msgNameError)
 	}
 	fmt.Println(msgName)
+	fmt.Println("")
+}
+
+func greetingPerName(forEach bool) {
+	// Names
+	names := []string{
+		"Gladys", "Samantha", "Darrin",
+	}
+	messages, err := greeter.Hellos(names)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// If no error was returned, print the returned map of
+	// messages to the console.
+	if forEach != true {
+		fmt.Println(messages)
+	} else {
+		for key, msg := range messages {
+			fmt.Println(key + ": " + msg)
+		}
+	}
 }
