@@ -2,27 +2,32 @@ package main
 
 import (
 	"fmt"
-	firstModule "letsgo/first_module"
+	greeter "letsgo/greetings"
 	"log"
 	"rsc.io/quote"
 )
-
-/* Or:
-import "fmt"
-import "rsc.io/quote"
-*/
 
 func main() {
 	fmt.Println("Hello, World!")
 	fmt.Println(quote.Go())
 
-	msg := firstModule.Hello("Murat")
-	fmt.Println(msg)
+	// Print name with parameters
+	name("Murat")
 
-	msgAge, msgAgeError := firstModule.HelloAge("", "18")
+	// Multiple parameters and error handling
+	nameWithErrors("", "18")
+
+}
+
+func name(name string) {
+	msg := greeter.JustName(name)
+	fmt.Println(msg)
+}
+
+func nameWithErrors(name string, age string) {
+	msgAge, msgAgeError := greeter.WithAge(name, age)
 	if msgAgeError != nil {
 		log.Fatal(msgAgeError)
 	}
-
 	fmt.Println(msgAge)
 }

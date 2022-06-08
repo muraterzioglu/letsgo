@@ -1,18 +1,23 @@
-package first_module
+package greetings
 
 import (
 	"errors"
 	"fmt"
 )
 
-// Hello returns a greeting for the named person.
-func Hello(name string) string {
+// JustName returns a greeting for the named person.
+func JustName(name string) string {
 	// Return a greeting that embeds the name in a message.
+	// In Go, the := operator is a shortcut for declaring and initializing a variable in one line
 	message := fmt.Sprintf("Hi, %v. Welcome!", name)
 	return message
 }
 
-func HelloAge(name string, age string) (string, error) {
+/*
+	if function starts with upper case its exported
+	from that module.
+*/
+func WithAge(name string, age string) (string, error) {
 	if name == "" {
 		return "", errors.New("name cannot be empty")
 	}
@@ -21,5 +26,3 @@ func HelloAge(name string, age string) (string, error) {
 	// nil means no error in go
 	return message, nil
 }
-
-// In Go, the := operator is a shortcut for declaring and initializing a variable in one line
