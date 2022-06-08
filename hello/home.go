@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	firstModule "letsgo/first_module"
+	"log"
 	"rsc.io/quote"
 )
 
@@ -18,6 +19,10 @@ func main() {
 	msg := firstModule.Hello("Murat")
 	fmt.Println(msg)
 
-	msgAge := firstModule.HelloAge("Murat", "18")
+	msgAge, msgAgeError := firstModule.HelloAge("", "18")
+	if msgAgeError != nil {
+		log.Fatal(msgAgeError)
+	}
+
 	fmt.Println(msgAge)
 }
